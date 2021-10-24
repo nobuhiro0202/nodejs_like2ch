@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ユーザー一覧</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/send_url.js"></script>
+</head>
+
+<body>
+  <%- include('header'); %>
+    <main>
+      <a href="/">トップに戻る</a>
+      <% if (locals.user_level === 100) { %>
+        <p>あなたはレベル100なので、他のユーザーを削除しちゃいましょう</p>
+        <ul class="users">
+          <% users.forEach((user)=> { %>
+            <li>
+              <h2>
+                <%= user.username + '    level:' + user.user_level %>
+              </h2>
+              <% if(user.user_level < 100) { %>
+                <form method="post" action="/delete">
+                  <input type="hidden" name="id" value="<%= user.id %>">
+                  <button type="submit" name="button">削除</button>
+                </form>
+                <% }; %>
+            </li>
+            <% }); %>
+        </ul>
+        <% }else { %>
+          <ul class="users">
+            <% users.forEach((user)=> { %>
+              <li>
+                <h2>
+                  <%= user.username + '    level:' + user.user_level %>
+                </h2>
+              </li>
+              <% }); %>
+          </ul>
+          <% }; %>
+    </main>
+</body>
+
+</html>

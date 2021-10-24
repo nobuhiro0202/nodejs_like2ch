@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>コメント一覧</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/send_url.js"></script>
+  <script type="text/javascript" src="./js/dateformat.js"></script>
+</head>
+
+<body>
+  <%- include('header'); %>
+    <main>
+      <a href="/">トップに戻る</a>
+      <ul class="comment">
+        <% comments.reverse().forEach((com)=> { %>
+          <li>
+            <h2>
+              <%= com.comment %>
+            </h2>
+            <p>投稿者: <%= com.username + ' ' + com.create_at %></p>
+          </li>
+          <% }) %>
+      </ul>
+    </main>
+</body>
+
+</html>

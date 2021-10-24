@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>チャットワーク</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/send_url.js"></script>
+</head>
+
+<body>
+  <%- include('header'); %>
+    <div class="container">
+      <h1>簡易掲示板</h1>
+      <form action="/" method="POST">
+        <div class="form-group">
+          <p>コメントを入力してください</p>
+          <input type="text" id="comment" name="comment" class="comment" autofocus>
+        </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-outline-success">コメントする</button>
+          </div>
+      </form>
+      <main>
+        <ul class="comment">
+          <% comments.forEach((com)=> { %>
+            <li>
+              <h2>
+                <%= com.comment %>
+              </h2>
+              <p>投稿者: <%= com.username + ' ' + com.created_at;%>
+              </p>
+            </li>
+            <% }) %>
+        </ul>
+      </main>
+     </div>
+</body>
+
+</html>
